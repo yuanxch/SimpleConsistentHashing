@@ -4,7 +4,6 @@ a simple consistent hashing algorithm
 测试结果如下(仅供参考):
 
 1w Hasher_Md5：
-
 serv-2  1716    0.1716%
 
 serv-5  1538    0.1538%
