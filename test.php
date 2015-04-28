@@ -11,7 +11,35 @@ $servers = array(
 	'serv-6',
 );
 
-$hasher = new SimpleConsistentHashing(new Hasher_Md5());
+
+
+
+
+$counter = array();
+for($i=0; $i<10000; $i++)
+{
+	$mod = round(hash("md5", $i) % 6);
+	if(isset($counter[$mod]))
+		$counter[$mod]++;	
+	else
+		$counter[$mod] = 1;
+}
+
+foreach($counter as $k=>$v) {
+	echo $servers[$k] . "\t" . $v . "\t" . ($v/array_sum($counter)) . "%\n";
+}
+
+exit;
+
+
+
+
+
+
+
+echo "========================\n";
+
+$hasher = new SimpleConsistentHashing();
 $hasher -> addTargets($servers, 1);
 
 
@@ -31,3 +59,6 @@ for ($i=0; $i<10000; $i++)
 foreach($counter as $k=>$v) {
 	echo $k . "\t" . $v . "\t" . ($v/array_sum($counter)) . "%\n";
 }
+
+
+//ssssssssssssssssssssssssssssss
